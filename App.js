@@ -1,39 +1,131 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View,Button,ImageBackground } from 'react-native';
+import React,{useState} from 'react';
+import { StyleSheet, Text, View,Button,ImageBackground,TextInput,ScrollView } from 'react-native';
 
-const image ={uri: "./assets/puppy-free-to-use.jpg"};
 
-export default function App() {
-  return (
-  
 
-    <View style={styles.container}>
-  
-	  
-      <Text>This just me making sure i can see changes on both IOS and Android</Text>
-	<Button
-	  onPress={()=>console.log("I am pressing button on app")}
-	  title = "Le ugly Button"
-	  color = "#AEE254"
-	  accessibilityLabel = "This is and ugly green button"
-	/>
-      <StatusBar style="auto" />
-    </View>
-  );
+
+const Cat = (props)=>{
+	const [isHungry,setIsHungry]= useState(true);
+	return(
+	  <View>
+		<Text>
+		I am {props.name}, and I am {isHungry?"Starving":"Satisfied"}!
+		</Text>
+		<Button
+		onPress={()=>{
+			setIsHungry(false);
+		}}
+		disabled={!isHungry}
+		title={isHungry?"Feed Me":"Known your place servant"}
+		/>
+
+          </View>
+
+	);
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-container2: {
-    flex: 1,
-  },
-image: {
-    flex: 1,
-    justifyContent: "center"
-  },	
+const PizzaTranslator = ()=> {
+	const [text,setText] = useState('');
+
+	return(
+	<View style= {{padding: 10}}>
+		<TextInput
+			style={{height: 40}}
+			placeholder = "Input Text to Translate"
+			onChangeText = {newText =>setText(newText)}
+			defaultValue = {text}
+		/>
+		<Text style={{padding: 10,fontSize:42}}>
+			{text.split(' ').map((word)=>word&&'Pizza').join(' ')}
+		</Text>
+	</View>
+	);
+
+}
+
+const Menu=()=>{
+	return(
+	<ScrollView>
+		<Text style={{fontSize:60}}>
+			Menu Items:
+		</Text>
+
+		<Text style={{fontSize:40}}>
+			1)Tuna salad
+		</Text>
+
+		<Text style={{fontSize:40}}>	
+			2)Caviar
+		</Text>
+
+		<Text style={{fontColor:'red',fontSize:40}}>
+			3)Blower fish
+		</Text>
+		
+		<Text style={{fontSize:40}}>
+                        4)Shark Fin Soup
+                </Text>
+
+		<Text style={{fontSize:40}}>    
+                        5)Turtle Soup
+                </Text>
+
+		<Text style={{fontSize:40}}>    
+                        6)Gumbo
+                </Text>
+		<PizzaTranslator />
+	</ScrollView>
+	);
 	
-});
+}
+
+
+
+
+const Cafe = () => {
+	return(
+	<>
+	  <Cat name="Diablo"/>
+          <Cat name="Beezzeblub"/>
+	  <Menu />	
+	  <PizzaTranslator/>
+	</>
+	);
+
+
+
+}
+
+
+
+export default Cafe;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

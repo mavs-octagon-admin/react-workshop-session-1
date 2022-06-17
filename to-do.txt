@@ -1,0 +1,11 @@
+Currently Cannot use props with multiple attributes.
+Need to figure out what i am doing wrong.
+Also continue reading the React Native beginner guide currently on State section
+
+
+
+
+
+
+
+
