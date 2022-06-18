@@ -1,8 +1,7 @@
-Currently Cannot use props with multiple attributes.
-Need to figure out what i am doing wrong.
-Also continue reading the React Native beginner guide currently on State section
+continue reading the React Native beginner guide currently on State section
 
-
+Why do certain features not show up on my phone? are they platform specific? or maybe it is more likely that i still do not know how to use 
+all the tools correctly.
 
 
 

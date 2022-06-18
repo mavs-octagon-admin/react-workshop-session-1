@@ -1,10 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
 import React,{useState} from 'react';
-import { StyleSheet, Text, View,Button,ImageBackground,TextInput,ScrollView } from 'react-native';
+import { StyleSheet, Text, View,Button,ImageBackground,TextInput,ScrollView,FlatList,SectionList } from 'react-native';
 
 
-
-
+/*
+ * Cat class? function? in Who Know is JavaScript everything is kinda muddled
+ * together.
+*/
 const Cat = (props)=>{
 	const [isHungry,setIsHungry]= useState(true);
 	return(
@@ -25,6 +27,9 @@ const Cat = (props)=>{
 	);
 }
 
+/*
+ *Input Text Example. this take input from user and translates it to Pizza
+*/
 const PizzaTranslator = ()=> {
 	const [text,setText] = useState('');
 
@@ -44,6 +49,10 @@ const PizzaTranslator = ()=> {
 
 }
 
+
+/*
+ *ScrollView Example using a Menu 
+ */
 const Menu=()=>{
 	return(
 	<ScrollView>
@@ -59,7 +68,7 @@ const Menu=()=>{
 			2)Caviar
 		</Text>
 
-		<Text style={{fontColor:'red',fontSize:40}}>
+		<Text style={{fontSize:40}}>
 			3)Blower fish
 		</Text>
 		
@@ -74,22 +83,75 @@ const Menu=()=>{
 		<Text style={{fontSize:40}}>    
                         6)Gumbo
                 </Text>
-		<PizzaTranslator />
+		
+                <PizzaTranslator />
+
 	</ScrollView>
 	);
 	
 }
 
 
+/*
+ * FlatList example 
+*/
+const FlatListBasics = () => {
+	return(
+		<View style={styles.container}>
+		  <FlatList
+                	data = {[   
+				{key:'Chandra'},
+				{key:'Long'},
+				{key:'Hussain'},
+				{key:'Maria'},
+				{key:'Servants'},
+			]}
+			renderItem= {({item}) => <Text style ={styles.item}>{item.key}</Text>}
+		  />
+		</View>
+	);
 
+
+
+}
+
+/*
+ *SectionList Example
+*/
+const SectionListBasics = () => {
+    return (
+      <View style={styles.container}>
+        <SectionList
+          sections={[
+            {title: 'C', data: ['Chandra']},
+            {title: 'H', data: ['Hussain']},
+	    {title: 'L', data: ['Long']},
+	    {title: 'M', data: ['Maria']},	  
+          ]}
+          renderItem={({item}) => <Text style={styles.item}>{item}</Text>}
+          renderSectionHeader={({section}) => <Text style={styles.sectionHeader}>{section.title}</Text>}
+          keyExtractor={(item, index) => index}
+        />
+      </View>
+    );
+}
+
+
+
+
+/*
+ *This is the main class/function that is being exported out at the end
+ *meaning that you can import the cafe class in another file.
+*/
 
 const Cafe = () => {
 	return(
 	<>
-	  <Cat name="Diablo"/>
-          <Cat name="Beezzeblub"/>
+	  <FlatListBasics />
+    	  <SectionListBasics />	
+	  <Cat name="Diablo" />
+          <Cat name="Beezzeblub" />
 	  <Menu />	
-	  <PizzaTranslator/>
 	</>
 	);
 
@@ -97,7 +159,29 @@ const Cafe = () => {
 
 }
 
-
+/*
+ *Below here are style/css rules for FlatList and SectionList
+ */
+const styles = StyleSheet.create({
+  container: {
+   flex: 1,
+   paddingTop: 22
+  },
+  sectionHeader: {
+    paddingTop: 2,
+    paddingLeft: 10,
+    paddingRight: 10,
+    paddingBottom: 2,
+    fontSize: 14,
+    fontWeight: 'bold',
+    backgroundColor: 'rgba(247,247,247,1.0)',
+  },
+  item: {
+    padding: 10,
+    fontSize: 18,
+    height: 44,
+  },
+})
 
 export default Cafe;
 
